@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFrame Loader</title>
+    <style>
+        iframe {
+          position: fixed;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
+          margin: 0;
+          padding: 0;
+        }
+        
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: monospace;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          background-color: #333;
+          }
+        
+        .button-wrapper {
+          width: 100%;
+          height: 100%;
+          z-index: 10000;
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -khtml-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-wrapper" onclick="changePage()"></div>
+    <div id="iframe-container">
+        <iframe src="initial-page.html" frameborder="0"></iframe >
+    </div>
+   
+    <script>
+        // Define the URLs of the different pages
+        const pageURLs = [
+            "https://terraformexplorer.xyz/api/token-svg/250",
+            "https://tokens.mathcastles.xyz/terraforms/token-html/250",
+            // Add more page URLs as needed
+        ];
+
+        const iframeContainer = document.getElementById("iframe-container");
+
+        let currentPageIndex = 0;
+
+        // Function to change the displayed page in the iframe
+        function changePage() {
+            currentPageIndex = (currentPageIndex + 1) % pageURLs.length;
+            const newPageURL = pageURLs[currentPageIndex];
+            iframeContainer.innerHTML = `<iframe src="${newPageURL}" frameborder="0"></iframe>`;
+        }
+
+
+        // Initial display of the iframe
+        iframeContainer.innerHTML = `<iframe src="${pageURLs[currentPageIndex]}" frameborder="0"></iframe>`;
+    </script>
+</body>
+</html>
