@@ -49,10 +49,19 @@
     </div>
    
     <script>
+
+        // Function to parse query parameters from the URL
+        function getQueryParameters() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            return urlParams;
+        }
+            const queryParams = getQueryParameters();
+            const queryParamValue = queryParams.get("q");
         // Define the URLs of the different pages
         const pageURLs = [
-            "https://terraformexplorer.xyz/api/token-svg/250",
-            "https://tokens.mathcastles.xyz/terraforms/token-html/250",
+            "https://terraformexplorer.xyz/api/token-svg/" + queryParamValue,
+            "https://tokens.mathcastles.xyz/terraforms/token-html/" + queryParamValue,
             // Add more page URLs as needed
         ];
 
