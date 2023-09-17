@@ -49,11 +49,20 @@ body {
     </div>
    
     <script>
-        // Define the URLs of the different pages
+
+        // Function to parse query parameters from the URL
+        function getQueryParameters() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            return urlParams;
+        }
+
+         const queryParams = getQueryParameters();
+         const queryParamValue = queryParams.get("q");
+        // Define the URLs
         const pageURLs = [
-            "https://terraformexplorer.xyz/api/token-svg/250",
-            "https://tokens.mathcastles.xyz/terraforms/token-html/250",
-            // Add more page URLs as needed
+            "https://terraformexplorer.xyz/api/token-svg/" + queryParamValue,
+            "https://tokens.mathcastles.xyz/terraforms/token-html/" + queryParamValue,
         ];
 
         const iframeContainer = document.getElementById("iframe-container");
@@ -62,6 +71,7 @@ body {
 
         // Function to change the displayed page in the iframe
         function changePage() {
+           
             currentPageIndex = (currentPageIndex + 1) % pageURLs.length;
             const newPageURL = pageURLs[currentPageIndex];
             iframeContainer.innerHTML = `<iframe src="${newPageURL}" frameborder="0"></iframe>`;
