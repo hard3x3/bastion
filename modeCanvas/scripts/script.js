@@ -10,3 +10,13 @@ async function callDream(a, b, c, d, e, f, g, h, i, j, k) {
     		document.getElementById('exportSVG').innerHTML = result;
 	});
 }
+
+// Convert the input sequence to an array of integers
+const inputArray = inputSequence.split(',').map(Number);
+// Convert the array to the desired format
+const formattedArray = [];
+for (let i = 0; i < inputArray.length; i += 64) {
+    formattedArray.push(inputArray.slice(i, i + 64).join(''));
+}
+// Display the result
+console.log(formattedArray);
